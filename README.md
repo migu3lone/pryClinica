@@ -4,7 +4,7 @@
 - U20207357 Anhuaman Flores, Sebastian José - bastianf20
 - U21218023	Davila Durazno, Jordan Paolo - jordanpd03
 - U21210433	Diaz Belleza, Pedro Jesus - pedrodiazbelleza
-- U21230302	Hinostroza Lurquin, Jorge Luis
+- U21230302	Hinostroza Lurquin, Jorge Luis - jlhinostroza
 
 # Editor.md
 
