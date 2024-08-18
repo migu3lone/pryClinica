@@ -1,10 +1,10 @@
 ### Diseño de una aplicación móvil para el monitoreo y gestión de citas de una clínica
 
 - U18100659 Manrique Benites, Michael Francois - migu3lone
-- U20207357 Anhuaman Flores, Sebastian José - bastianf20
-- U21218023	Davila Durazno, Jordan Paolo - jordanpd03
-- U21210433	Diaz Belleza, Pedro Jesus - pedrodiazbelleza
-- U21230302	Hinostroza Lurquin, Jorge Luis - jlhinostroza
+- U20207357 Anhuaman Flores, Sebastián José - bastianf20
+- U21218023 Dávila Durazno, Jordán Paolo - jordanpd03
+- U21210433 Diaz Belleza, Pedro Jesús - pedrodiazbelleza
+- U21230302 Hinostroza Lurquin, Jorge Luis - jlhinostroza
 
 # Editor.md
 
