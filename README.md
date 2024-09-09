@@ -15,7 +15,5 @@
 
 **Instrucciones**
 
-- Copiar los archivos en C:\XAMPP\htdocs\pryClinica
 - Usar Android Studio Koala o superior
-- En app\java\com.migu3lone.pryclinica\connection\RetrofitClient cambiar la ip por la de su equipo, usar ipconfig para obtener el ip
 - Ejecutar el sql bdClinica_procedure.sql, si es que da error, ejecutar primero bdClinica_sinprocedure.sql y luego procedure.sql
