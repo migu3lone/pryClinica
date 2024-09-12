@@ -16,4 +16,3 @@
 **Instrucciones**
 
 - Usar Android Studio Koala o superior
-- Ejecutar el sql bdClinica_procedure.sql, si es que da error, ejecutar primero bdClinica_sinprocedure.sql y luego procedure.sql
