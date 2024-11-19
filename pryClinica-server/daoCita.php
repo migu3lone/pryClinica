@@ -8,10 +8,10 @@ class daoCita {
     }
 
     public static function getAll() {
-        $sql = "SELECT IdCita, concat_ws(', ',paciente.Apellidos,paciente.Nombres) as paciente, especialidad.Especialidad as fk_Especialidad, concat_ws(', ',medico.Apellidos,medico.Nombres) as fk_Medico, Fecha, Hora, fk_Paciente
-from cita inner join paciente on cita.fk_Paciente=paciente.IdPaciente
-inner join especialidad on cita.fk_Especialidad=especialidad.IdEspecialidad
-inner join medico on cita.fk_Medico=medico.IdMedico
+        $sql = "SELECT IdCita, concat_ws(', ',paciente.Apellidos,paciente.Nombres) as Paciente, especialidad.Especialidad as FK_Especialidad, concat_ws(', ',medico.Apellidos,medico.Nombres) as FK_Medico, Fecha, Hora, FK_Paciente
+from cita inner join paciente on cita.FK_Paciente=paciente.IdPaciente
+inner join especialidad on cita.FK_Especialidad=especialidad.IdEspecialidad
+inner join medico on cita.FK_Medico=medico.IdMedico
 ORDER BY IdCita ASC";
 
         try {
@@ -25,10 +25,10 @@ ORDER BY IdCita ASC";
     }
 
     public static function getById($var1) {
-        $sql = "SELECT IdCita, concat_ws(' ',paciente.Nombres,paciente.Apellidos) as fk_Paciente, especialidad.Especialidad as fk_Especialidad, concat_ws(' ',medico.Nombres,medico.Apellidos) as fk_Medico, Fecha, Hora
-from cita inner join paciente on cita.fk_Paciente=paciente.IdPaciente
-inner join especialidad on cita.fk_Especialidad=especialidad.IdEspecialidad
-inner join medico on cita.fk_Medico=medico.IdMedico
+        $sql = "SELECT IdCita, concat_ws(' ',paciente.Nombres,paciente.Apellidos) as FK_Paciente, especialidad.Especialidad as FK_Especialidad, concat_ws(' ',medico.Nombres,medico.Apellidos) as FK_Medico, Fecha, Hora
+from cita inner join paciente on cita.FK_Paciente=paciente.IdPaciente
+inner join especialidad on cita.FK_Especialidad=especialidad.IdEspecialidad
+inner join medico on cita.FK_Medico=medico.IdMedico
 where IdCita like ?";
 
         try {
@@ -42,11 +42,11 @@ where IdCita like ?";
     }
 	
 	public static function getByValue($var2, $var3, $var4) {
-        $sql = "SELECT IdCita, concat_ws(', ',paciente.Apellidos,paciente.Nombres) as paciente, especialidad.Especialidad as fk_Especialidad, concat_ws(', ',medico.Apellidos,medico.Nombres) as fk_Medico, Fecha, Hora, fk_Paciente
-from cita inner join paciente on cita.fk_Paciente=paciente.IdPaciente
-inner join especialidad on cita.fk_Especialidad=especialidad.IdEspecialidad
-inner join medico on cita.fk_Medico=medico.IdMedico
-where especialidad.Especialidad like ? or fk_Medico like ? or fk_Paciente like ?
+        $sql = "SELECT IdCita, concat_ws(', ',paciente.Apellidos,paciente.Nombres) as Paciente, especialidad.Especialidad as FK_Especialidad, concat_ws(', ',medico.Apellidos,medico.Nombres) as FK_Medico, Fecha, Hora, FK_Paciente
+from cita inner join paciente on cita.FK_Paciente=paciente.IdPaciente
+inner join especialidad on cita.FK_Especialidad=especialidad.IdEspecialidad
+inner join medico on cita.FK_Medico=medico.IdMedico
+where especialidad.Especialidad like ? or FK_Medico like ? or FK_Paciente like ?
 ORDER BY IdCita ASC";
 
         try {
@@ -63,11 +63,11 @@ ORDER BY IdCita ASC";
     }
 	
 /*	public static function getByValue($var2, $var3) {
-        $sql = "SELECT IdCita, concat_ws(', ',paciente.Apellidos,paciente.Nombres) as paciente, especialidad.Especialidad as fk_Especialidad, concat_ws(', ',medico.Apellidos,medico.Nombres) as fk_Medico, Fecha, Hora, fk_Paciente
-from cita inner join paciente on cita.fk_Paciente=paciente.IdPaciente
-inner join especialidad on cita.fk_Especialidad=especialidad.IdEspecialidad
-inner join medico on cita.fk_Medico=medico.IdMedico
-where especialidad.Especialidad like ? or fk_Medico like ?
+        $sql = "SELECT IdCita, concat_ws(', ',paciente.Apellidos,paciente.Nombres) as Paciente, especialidad.Especialidad as FK_Especialidad, concat_ws(', ',medico.Apellidos,medico.Nombres) as FK_Medico, Fecha, Hora, FK_Paciente
+from cita inner join paciente on cita.FK_Paciente=paciente.IdPaciente
+inner join especialidad on cita.FK_Especialidad=especialidad.IdEspecialidad
+inner join medico on cita.FK_Medico=medico.IdMedico
+where especialidad.Especialidad like ? or FK_Medico like ?
 ORDER BY IdCita ASC";
 
         try {
@@ -83,11 +83,11 @@ ORDER BY IdCita ASC";
     }
 
     /*public static function getByValue($var2) {
-        $sql = "SELECT IdCita, concat_ws(', ',paciente.Apellidos,paciente.Nombres) as paciente, especialidad.Especialidad as fk_Especialidad, concat_ws(', ',medico.Apellidos,medico.Nombres) as fk_Medico, Fecha, Hora, fk_Paciente
-from cita inner join paciente on cita.fk_Paciente=paciente.IdPaciente
-inner join especialidad on cita.fk_Especialidad=especialidad.IdEspecialidad
-inner join medico on cita.fk_Medico=medico.IdMedico
-where especialidad.Especialidad like ? or fk_Medico like ?
+        $sql = "SELECT IdCita, concat_ws(', ',paciente.Apellidos,paciente.Nombres) as Paciente, especialidad.Especialidad as FK_Especialidad, concat_ws(', ',medico.Apellidos,medico.Nombres) as FK_Medico, Fecha, Hora, FK_Paciente
+from cita inner join paciente on cita.FK_Paciente=paciente.IdPaciente
+inner join especialidad on cita.FK_Especialidad=especialidad.IdEspecialidad
+inner join medico on cita.FK_Medico=medico.IdMedico
+where especialidad.Especialidad like ? or FK_Medico like ?
 ORDER BY IdCita ASC";
 
         try {
