@@ -19,13 +19,13 @@ class daoEspecialidad {
      */
 
      /*
-     SELECT IdCita, concat_ws(' ',paciente.Nombres,paciente.Apellidos) as fk_Paciente, especialidad.Especialidad as fk_Especialidad, concat_ws(' ',medico.Nombres,medico.Apellidos) as fk_Medico, Fecha, Hora
-from cita inner join paciente on cita.fk_Paciente=paciente.IdPaciente
-inner join especialidad on cita.fk_Especialidad=especialidad.IdEspecialidad
-inner join medico on cita.fk_Medico=medico.IdMedico
+     SELECT IdCita, concat_ws(' ',paciente.Nombres,paciente.Apellidos) as FK_Paciente, especialidad.Especialidad as FK_Especialidad, concat_ws(' ',medico.Nombres,medico.Apellidos) as FK_Medico, Fecha, Hora
+from cita inner join paciente on cita.FK_Paciente=paciente.IdPaciente
+inner join especialidad on cita.FK_Especialidad=especialidad.IdEspecialidad
+inner join medico on cita.FK_Medico=medico.IdMedico
 ORDER BY IdCita ASC
 
-SELECT IdCita, fk_Paciente, fk_Especialidad, fk_Medico, Fecha, Hora
+SELECT IdCita, FK_Paciente, FK_Especialidad, FK_Medico, Fecha, Hora
         from cita
         ORDER BY IdCita ASC
      */
@@ -128,7 +128,7 @@ ORDER BY IdEspecialidad ASC";
         // Creando consulta UPDATE
         /*
         $sql = "UPDATE cita
-            SET fk_Paciente=?, fk_Especialidad=?, fk_Medico=?, Fecha=?, Hora=?
+            SET FK_Paciente=?, FK_Especialidad=?, FK_Medico=?, Fecha=?, Hora=?
             WHERE IdCita=?";*/
         //call actEspecialidad("C001", "P005", "E001", "M002", "2028-08-05", "08:11:33.000000");
         $sql = "call actEspecialidad(?, ?)";
@@ -156,7 +156,7 @@ ORDER BY IdEspecialidad ASC";
      */
     public static function insert($var2) {
         // Sentencia INSERT
-        //$sql = "INSERT INTO cita (fk_Paciente, fk_Especialidad, fk_Medico, Fecha, Hora) VALUES (?, ?, ?, ?, ?)";
+        //$sql = "INSERT INTO cita (FK_Paciente, FK_Especialidad, FK_Medico, Fecha, Hora) VALUES (?, ?, ?, ?, ?)";
         //call agrEspecialidad("P001", "E001", "M001", "2025-08-05", "08:11:33.000000");
         $sql = "call agrEspecialidad(?)";
 
