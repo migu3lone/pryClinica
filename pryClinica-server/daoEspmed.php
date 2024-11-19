@@ -8,9 +8,9 @@ class daoEspmed {
     }
 
     public static function getAll() {
-        $sql = "SELECT especialidad.Especialidad as especialidad, concat_ws(', ',medico.Apellidos,medico.Nombres) as medico, fk_Especialidad, fk_Medico
-from espmed inner join especialidad on espmed.fk_Especialidad=especialidad.IdEspecialidad
-inner join medico on espmed.fk_Medico=medico.IdMedico
+        $sql = "SELECT especialidad.Especialidad as especialidad, concat_ws(', ',medico.Apellidos,medico.Nombres) as medico, FK_Especialidad, FK_Medico
+from espmed inner join especialidad on espmed.FK_Especialidad=especialidad.IdEspecialidad
+inner join medico on espmed.FK_Medico=medico.IdMedico
 ORDER BY especialidad.Especialidad ASC";
 
         try {
@@ -25,9 +25,9 @@ ORDER BY especialidad.Especialidad ASC";
 
     public static function getById($var1) {
         $sql = "SELECT especialidad.Especialidad as especialidad, concat_ws(', ',medico.Apellidos,medico.Nombres) as medico
-from espmed inner join especialidad on espmed.fk_Especialidad=especialidad.IdEspecialidad
-inner join medico on espmed.fk_Medico=medico.IdMedico
-where fk_Especialidad like ?";
+from espmed inner join especialidad on espmed.FK_Especialidad=especialidad.IdEspecialidad
+inner join medico on espmed.FK_Medico=medico.IdMedico
+where FK_Especialidad like ?";
 
         try {
             $stmt = Database::getInstance()->getDb()->prepare($sql);
@@ -41,8 +41,8 @@ where fk_Especialidad like ?";
 
     public static function getByValue($var2) {
         $sql = "SELECT especialidad.Especialidad as especialidad, concat_ws(', ',medico.Apellidos,medico.Nombres) as medico
-from espmed inner join especialidad on espmed.fk_Especialidad=especialidad.IdEspecialidad
-inner join medico on espmed.fk_Medico=medico.IdMedico
+from espmed inner join especialidad on espmed.FK_Especialidad=especialidad.IdEspecialidad
+inner join medico on espmed.FK_Medico=medico.IdMedico
 where especialidad.Especialidad like ?
 ORDER BY medico.Apellidos ASC";
 
@@ -72,7 +72,7 @@ ORDER BY medico.Apellidos ASC";
     }
 
     public static function insert($var2, $var3) {
-		//INSERT INTO espmed (fk_Especialidad, fk_Medico) VALUES ('E016', 'M046')
+		//INSERT INTO espmed (FK_Especialidad, FK_Medico) VALUES ('E016', 'M046')
         //call agrEspmed("P001", "E001", "M001", "2025-08-05", "08:11:33.000000");
         $sql = "call agrEspmed(?, ?)";
 
