@@ -26,11 +26,9 @@ public interface ApiServiceEspecialidad {
     @GET("apiEspecialidad.php")
     Call<ResponseMessage<especialidad[]>> getByValue(@Query("var2") String var2);
 
-    // Crear o actualizar
+    // Crear
     @POST("apiEspecialidad.php")
     Call<ResponseMessage<String>> saveEspecialidad(@Body JsonObject especialidadData);
-
-    //Call<ResponseMessage<String>> savePaciente(@Body paciente save);
 
     // Eliminar por ID
     @DELETE("apiEspecialidad.php")

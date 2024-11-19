@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,7 +44,6 @@ import java.io.IOException;
 
 public class ViewEspecialidadFragment extends Fragment  {
 
-    private Button btnShowModal;
     private SearchView searchView;
     private RecyclerView recyclerEspecialidad;
     private RecyclerView recyclerMedico;
@@ -57,6 +57,9 @@ public class ViewEspecialidadFragment extends Fragment  {
     private ApiServiceMedico apiMedico;
     private ApiServiceCita apiCita;
     private ApiServicePaciente apiPaciente;
+    private View modalAddView;
+    private AlertDialog dialog;
+
 
     public ViewEspecialidadFragment() {
         // Required empty public constructor
@@ -108,41 +111,41 @@ public class ViewEspecialidadFragment extends Fragment  {
         return view;
     }
 
-    private void showFormModal(String valor) {
-        // Inflar el diseño del formulario
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
-        View modalAddView = inflater.inflate(R.layout.modal_addespecialidad, null);
 
-        // Crear el AlertDialog
+    private void showFormModal(String valor) {
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
+        // Si modalAddView ya tiene un padre, lo eliminamos
+        if (modalAddView != null && modalAddView.getParent() != null) {
+            ((ViewGroup) modalAddView.getParent()).removeView(modalAddView);
+        }
+
+        // Inflar el diseño del formulario si es nulo
+        if (modalAddView == null) {
+            modalAddView = inflater.inflate(R.layout.modal_addespecialidad, null);
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setView(modalAddView);
-        AlertDialog dialog = builder.create();
+        dialog = builder.create();
+        if (valor.equals("add")){
+            addEspecialidad();
+        }
+        dialog.show();
+    }
 
-        EditText etIdEsp;
-        EditText etNameEsp;
-        Button btnSubmit;
-
-
-        if(valor.equals("add")){
-
-            // Configurar elementos del formulario
-            etIdEsp = modalAddView.findViewById(R.id.etIdEspecialidad);
-            etNameEsp = modalAddView.findViewById(R.id.etEspecialidad);
-            btnSubmit = modalAddView.findViewById(R.id.btnGuardar);
-
-            btnSubmit.setOnClickListener(view -> {
-                String id = etIdEsp.getText().toString();
-                String name = etNameEsp.getText().toString();
-
-                if (!name.isEmpty()) {
-                    Toast.makeText(requireContext(), "Nuevo registro creado:\n" + name + "\n", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss(); // Cierra el modal
-                } else {
-                    Toast.makeText(requireContext(), "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
-                }
+    private void addEspecialidad(){
+        cleanForm();
+        Button btnSubmit = modalAddView.findViewById(R.id.btnGuardar);
+        EditText etIdEsp = modalAddView.findViewById(R.id.etIdEspecialidad);
+        etIdEsp.setVisibility(View.GONE);
+        EditText etNameEsp = modalAddView.findViewById(R.id.etEspecialidad);
+        btnSubmit.setText("Crear");
 
 
-
+        btnSubmit.setOnClickListener(view -> {
+            String id = etIdEsp.getText().toString();
+            String name = etNameEsp.getText().toString();
+            if (!name.isEmpty()) {
 
                 JsonObject especialidadData = new JsonObject();
                 especialidadData.addProperty("var1", id);
@@ -157,11 +160,9 @@ public class ViewEspecialidadFragment extends Fragment  {
 
                         if (response.isSuccessful() && response.body() != null) {
                             ResponseMessage<String> responseMessage = response.body();
-                            // Verifica si se debe agregar o actualizar la especialidad
-                            String mensaje = id.isEmpty() ? "Agregado con éxito" : "Actualizado con éxito";
-                            //String mensaje = response.body().getMensaje();
-                            Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Nuevo registro creado:\n" + name + "\n", Toast.LENGTH_SHORT).show();
                             Log.e("API_RESPONSE", "Valor de var1: " + name);
+                            dialog.dismiss(); // Cierra el modal
                         } else {
                             try {
                                 String errorResponse = response.errorBody().string();
@@ -178,21 +179,64 @@ public class ViewEspecialidadFragment extends Fragment  {
                         Toast.makeText(getContext(), "Error en la solicitud: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+            } else {
+                Toast.makeText(requireContext(), "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
+            }
+            ;
+        });
+    };
 
+    private void editEspecialidad(@NonNull especialidad obj){
+        showFormModal("edit");
+        Button btnSubmit = modalAddView.findViewById(R.id.btnGuardar);
+        TextView etIdEsp = modalAddView.findViewById(R.id.etIdEspecialidad);
+        TextView etNameEsp = modalAddView.findViewById(R.id.etEspecialidad);
 
+        etIdEsp.setText(obj.getIdEspecialidad());
+        etIdEsp.setVisibility(View.VISIBLE);
+        etIdEsp.setEnabled(false);
+        etNameEsp.setText(obj.getEspecialidad());
+        btnSubmit.setText("Actualizar");
+        btnSubmit.setOnClickListener(view -> {
+            String id = etIdEsp.getText().toString();
+            String name = etNameEsp.getText().toString();
+            if (!name.isEmpty()) {
 
+                JsonObject especialidadData = new JsonObject();
+                especialidadData.addProperty("var1", id);
+                especialidadData.addProperty("var2", name);
 
-            });
-        } else if(valor.equals("edit")){
+                Log.d("API_REQUEST", "Datos a enviar a la API para editar: " + especialidadData.toString());
+                apiEspecialidad.saveEspecialidad(especialidadData).enqueue(new Callback<ResponseMessage<String>>() {
+                    @Override
+                    public void onResponse(Call<ResponseMessage<String>> call, Response<ResponseMessage<String>> response) {
 
-        }
+                        if (response.isSuccessful() && response.body() != null) {
+                            ResponseMessage<String> responseMessage = response.body();
+                            Toast.makeText(getContext(), "Registro actualizado:\n" + name + "\n", Toast.LENGTH_SHORT).show();
+                            Log.e("API_RESPONSE", "Valor de var1: " + name);
+                            dialog.dismiss(); // Cierra el modal
+                        } else {
+                            try {
+                                String errorResponse = response.errorBody().string();
+                                Log.e("API_ERROR", "Error en la respuesta: " + errorResponse);
+                                Toast.makeText(getContext(), "Error en la respuesta: " + errorResponse, Toast.LENGTH_SHORT).show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
 
-        dialog.show();
+                    @Override
+                    public void onFailure(Call<ResponseMessage<String>> call, Throwable t) {
+                        Toast.makeText(getContext(), "Error en la solicitud: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                Toast.makeText(requireContext(), "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
+            };
+        });
     }
-
-
-
-
 
     private void setupSearchView() {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -228,14 +272,14 @@ public class ViewEspecialidadFragment extends Fragment  {
                             @Override
                             public void onItemClick(especialidad obj) {
                                 loadMedico(obj.getIdEspecialidad());
-                                Log.d("ViewEspecialidadAdapter", "Clic en: " + obj.getIdEspecialidad());
+                                Log.d("ViewEspecialidadAdapter", "Clic en: " + obj.getIdEspecialidad() + " y " + obj.getEspecialidad());
                             }
 
                             // Editar
                             @Override
                             public void onEditClick(especialidad obj) {
                                 Log.d("ViewEspecialidadAdapter", "Clic en editar: " + obj.getIdEspecialidad());
-                                //editar(obj);
+                                editEspecialidad(obj);
                             }
 
                             // Eliminar
@@ -305,7 +349,7 @@ public class ViewEspecialidadFragment extends Fragment  {
                             @Override
                             public void onEditClick(especialidad obj) {
                                 Log.d("ViewEspecialidadAdapter", "Clic en editar: " + obj.getIdEspecialidad());
-                                //editar(obj);
+                                editEspecialidad(obj);
                             }
 
                             // Eliminar
@@ -348,6 +392,13 @@ public class ViewEspecialidadFragment extends Fragment  {
                 recyclerPaciente.setVisibility(View.GONE);
             }
         });
+    }
+
+    private void cleanForm(){
+        TextView etIdEsp = modalAddView.findViewById(R.id.etIdEspecialidad);
+        TextView etNameEsp = modalAddView.findViewById(R.id.etEspecialidad);
+        etIdEsp.setText("");
+        etNameEsp.setText("");
     }
 
     private void loadMedico(String var3) {

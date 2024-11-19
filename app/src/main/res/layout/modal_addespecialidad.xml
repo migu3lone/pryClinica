@@ -9,13 +9,7 @@
     android:orientation="vertical"
     tools:context=".ui.especialidad.AddEspecialidadFragment">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="8dp"
-        android:padding="16dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,5 +37,4 @@
                 android:layout_height="wrap_content"
                 android:text="Guardar" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 </ScrollView>
