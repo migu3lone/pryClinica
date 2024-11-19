@@ -1,8 +1,9 @@
 <?php
-
+  
 /*$dao = 'daoEspmed';
-$var1 = 'IdPaciente';
-$var2 = 'Apellidos';*/
+$var1 = 'IdEspmed';
+$var2 = 'FK_Especialidad';
+$var3 = 'FK_Medico';*/
 
 $dao = 'daoEspmed';
 $var1 = 'var1';
@@ -39,13 +40,15 @@ function handleGetRequest() {
         $result = $dao::getById($var1x);
 
         if ($result) {
+            http_response_code(200);
             echo json_encode([
-                "status" => 1,
+                "status" => 200,
                 "data" => $result
             ]);
         } else {
+            http_response_code(404);
             echo json_encode([
-                "status" => 2,
+                "status" => 404,
                 "message" => "ID no existe"
             ]);
         }
@@ -55,13 +58,15 @@ function handleGetRequest() {
         $result = $dao::getByValue($var2x);
 
         if ($result) {
+            http_response_code(200);
             echo json_encode([
-                "status" => 1,
+                "status" => 200,
                 "data" => $result
             ]);
         } else {
+            http_response_code(404);
             echo json_encode([
-                "status" => 2,
+                "status" => 404,
                 "message" => "No se encontraron coincidencias para el valor de búsqueda"
             ]);
         }
@@ -70,13 +75,15 @@ function handleGetRequest() {
         $result = $dao::getAll();
 
         if ($result) {
+            http_response_code(200);
             echo json_encode([
-                "status" => 1,
+                "status" => 200,
                 "data" => $result
             ]);
         } else {
+            http_response_code(500);
             echo json_encode([
-                "status" => 2,
+                "status" => 500,
                 "message" => "Ha ocurrido un error"
             ]);
         }
@@ -96,13 +103,15 @@ function handlePostRequest() {
             $result = $dao::update($var1x, $var2x, $var3x);
 
             if ($result) {
+                http_response_code(200);
                 echo json_encode([
-                    "status" => 1,
+                    "status" => 200,
                     "message" => "Actualización exitosa"
                 ]);
             } else {
+                http_response_code(500);
                 echo json_encode([
-                    "status" => 2,
+                    "status" => 500,
                     "message" => "No se pudo actualizar"
                 ]);
             }
@@ -111,21 +120,24 @@ function handlePostRequest() {
             $result = $dao::insert($var2x, $var3x);
 
             if ($result) {
+                http_response_code(201);
                 echo json_encode([
-                    "status" => 1,
+                    "status" => 201,
                     "message" => "Inserción exitosa"
                 ]);
             } else {
+                http_response_code(500);
                 echo json_encode([
-                    "status" => 2,
+                    "status" => 500,
                     "message" => "No se pudo insertar"
                 ]);
             }
         }
 
     } else {
+        http_response_code(400);
         echo json_encode([
-            "status" => 2,
+            "status" => 400,
             "message" => "Datos incompletos"
         ]);
     }
@@ -141,27 +153,31 @@ function handleDeleteRequest() {
             $result = $dao::delete($var1x);
 
             if ($result) {
+                http_response_code(200);
                 echo json_encode([
-                    "status" => 1,
+                    "status" => 200,
                     "message" => "Eliminación exitosa"
                 ]);
             } else {
+                http_response_code(500);
                 echo json_encode([
-                    "status" => 2,
+                    "status" => 500,
                     "message" => "No se pudo eliminar"
                 ]);
             }
 
         } else {
+            http_response_code(404);
             echo json_encode([
-                "status" => 2,
+                "status" => 404,
                 "message" => "ID no existe"
             ]);
         }
 
     } else {
+        http_response_code(400);
         echo json_encode([
-            "status" => 2,
+            "status" => 400,
             "message" => "ID no proporcionado"
         ]);
     }
