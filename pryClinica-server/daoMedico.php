@@ -56,8 +56,8 @@ ORDER BY IdMedico ASC";
 
 	public static function getByEspecialidad($var3) {
         $sql = "SELECT IdMedico, Apellidos, Nombres, DNI, CMP, Direccion, Celular
-from medico inner join espmed on medico.IdMedico=espmed.fk_Medico
-where espmed.fk_Especialidad like ?
+from medico inner join espmed on medico.IdMedico=espmed.FK_Medico
+where espmed.FK_Especialidad like ?
 ORDER BY Apellidos ASC";
 
         try {
@@ -71,13 +71,13 @@ ORDER BY Apellidos ASC";
         }
     }
 
-    public static function update($var1, $var2, $var3, $var4, $var5, $var6, $var7) {
+    public static function update($var1, $var2, $var3, $var4, $var5, $var6, $var7, $var8) {
         //call actMedico("C001", "P005", "E001", "M002", "2028-08-05", "08:11:33.000000");
-        $sql = "call actMedico(?, ?, ?, ?, ?, ?, ?)";
+        $sql = "call actMedico(?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             $stmt = Database::getInstance()->getDb()->prepare($sql);
-            $state = $stmt->execute([$var1, $var2, $var3, $var4, $var5, $var6, $var7]);
+            $state = $stmt->execute([$var1, $var2, $var3, $var4, $var5, $var6, $var7, $var8]);
             return $state;
         } catch (PDOException $e) {
             error_log("Error al intentar actualizar la base de datos: " . $e->getMessage());
@@ -85,13 +85,13 @@ ORDER BY Apellidos ASC";
         }
     }
 
-    public static function insert($var2, $var3, $var4, $var5, $var6, $var7) {
+    public static function insert($var2, $var3, $var4, $var5, $var6, $var7, $var8) {
         //call agrCita("P001", "E001", "M001", "2025-08-05", "08:11:33.000000");
-        $sql = "call agrMedico(?, ?, ?, ?, ?, ?)";
+        $sql = "call agrMedico(?, ?, ?, ?, ?, ?, ?)";
 
         try {
             $stmt = Database::getInstance()->getDb()->prepare($sql);
-            $state = $stmt->execute([$var2, $var3, $var4, $var5, $var6, $var7]);
+            $state = $stmt->execute([$var2, $var3, $var4, $var5, $var6, $var7, $var8]);
             return $state;
         } catch (PDOException $e) {
             error_log("Error al intentar insertar en la base de datos: " . $e->getMessage());
