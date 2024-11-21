@@ -12,20 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.gson.JsonObject;
-import com.migu3lone.pryclinica.MainActivity;
-import com.migu3lone.pryclinica.R;
-import com.migu3lone.pryclinica.beans.usuario;
-import com.migu3lone.pryclinica.connection.ApiServiceLogin;
-import com.migu3lone.pryclinica.connection.RetrofitClient;
-import com.migu3lone.pryclinica.connection.ResponseMessage;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import com.migu3lone.pryclinica.R;
+import com.migu3lone.pryclinica.beans.usuario;
+import com.migu3lone.pryclinica.connection.ApiServiceLogin;
+import com.migu3lone.pryclinica.connection.ResponseMessage;
+import com.migu3lone.pryclinica.connection.RetrofitClient;
+import com.migu3lone.pryclinica.MainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
