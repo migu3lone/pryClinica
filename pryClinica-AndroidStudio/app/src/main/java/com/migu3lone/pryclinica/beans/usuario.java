@@ -1,7 +1,6 @@
 package com.migu3lone.pryclinica.beans;
 
 import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
 public class usuario implements Serializable {
