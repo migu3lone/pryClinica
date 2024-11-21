@@ -5,8 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static Retrofit retrofit = null;
-    private static final String baseUrl = "http://192.168.20.22/pryClinica/";
-    //private static final String baseUrl = "http://10.0.2.2/pryClinica/";
+    //private static final String baseUrl = "http://192.168.20.22/pryClinica/";
+    private static final String baseUrl = "http://10.0.2.2/pryClinica/";
 
     public static Retrofit getClient() {
         if (retrofit == null) {
