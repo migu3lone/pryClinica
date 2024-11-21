@@ -1,156 +1,158 @@
 package com.migu3lone.pryclinica.ui.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
+import android.view.inputmethod.EditorInfo;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.gson.JsonObject;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import com.migu3lone.pryclinica.R;
-import com.migu3lone.pryclinica.beans.usuario;
-import com.migu3lone.pryclinica.connection.ApiServiceLogin;
-import com.migu3lone.pryclinica.connection.ResponseMessage;
-import com.migu3lone.pryclinica.connection.RetrofitClient;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import com.migu3lone.pryclinica.databinding.ActivityLoginBinding;
 import com.migu3lone.pryclinica.MainActivity;
+import com.migu3lone.pryclinica.R;
+import com.migu3lone.pryclinica.ui.login.LoginViewModel;
+import com.migu3lone.pryclinica.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText idUsuarioEditText, passwordEditText;
-    private Button loginButton;
-    private ProgressBar loadingProgressBar;
+    private LoginViewModel loginViewModel;
+    private ActivityLoginBinding binding;
     private SharedPreferences sharedPreferences;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
+        // Inicializa SharedPreferences
         sharedPreferences = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE);
 
-        // Si ya está autenticado, redirige al MainActivity
-        if (sharedPreferences.getBoolean("isLoggedIn", false)) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        // Verifica si el usuario ya está autenticado
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+        if (isLoggedIn) {
+            // Redirige a MainActivity si el usuario ya está autenticado
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
             finish();
+            return; // Termina la actividad de login
         }
 
-        idUsuarioEditText = findViewById(R.id.username);
-        passwordEditText = findViewById(R.id.password);
-        loginButton = findViewById(R.id.login);
-        loadingProgressBar = findViewById(R.id.loading);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        // Deshabilitar el botón de inicio de sesión por defecto
-        loginButton.setEnabled(false);
+        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
+                .get(LoginViewModel.class);
 
-        // Añadir el TextWatcher para habilitar el botón solo cuando ambos campos estén llenos
-        TextWatcher textWatcher = new TextWatcher() {
+        final EditText usernameEditText = binding.username;
+        final EditText passwordEditText = binding.password;
+        final Button loginButton = binding.login;
+        final ProgressBar loadingProgressBar = binding.loading;
+
+        loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                validateLoginFields();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        };
-
-        // Aplicar el TextWatcher a ambos EditText
-        idUsuarioEditText.addTextChangedListener(textWatcher);
-        passwordEditText.addTextChangedListener(textWatcher);
-
-        // Configuración del botón de inicio de sesión
-        loginButton.setOnClickListener(v -> {
-            loadingProgressBar.setVisibility(View.VISIBLE);
-            String idUsuario = idUsuarioEditText.getText().toString();
-            String password = passwordEditText.getText().toString();
-
-            loginUser(idUsuario, password);
-        });
-    }
-
-    private void validateLoginFields() {
-        String idUsuario = idUsuarioEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
-
-        // Habilitar el botón de login solo si ambos campos tienen texto
-        loginButton.setEnabled(!idUsuario.isEmpty() && !password.isEmpty());
-    }
-
-    private void loginUser(String idUsuario, String password) {
-        ApiServiceLogin apiService = RetrofitClient.getApiService();
-
-        JsonObject loginData = new JsonObject();
-        loginData.addProperty("idUsuario", idUsuario);
-        loginData.addProperty("password", password);
-
-        Call<ResponseMessage<usuario>> call = apiService.login(loginData);
-        call.enqueue(new Callback<ResponseMessage<usuario>>() {
-            @Override
-            public void onResponse(Call<ResponseMessage<usuario>> call, Response<ResponseMessage<usuario>> response) {
-                loadingProgressBar.setVisibility(View.GONE);
-
-                // Verifica el código de estado HTTP
-                if (response.isSuccessful()) {
-                    ResponseMessage<usuario> responseBody = response.body();
-
-                    if (responseBody != null) {
-                        // Debug: Verifica el contenido de la respuesta
-                        Log.d("Login", "Success: " + responseBody.getSuccess());
-
-                        if (responseBody.getSuccess()) {
-                            usuario user = responseBody.getData();
-                            // Si usas Retrofit o alguna librería similar
-                            Log.d("LoginActivity", "Nombres: " + user.getNombres());
-                            Log.d("LoginActivity", "Rol: " + user.getRol());
-
-
-                            // Guardar estado de autenticación
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putBoolean("isLoggedIn", true);
-                            //editor.putString("userName", user.getNombres());
-                            //editor.putString("userRole", user.getRol()); // Guardar el rol
-                            //editor.apply();
-                            Log.d("LoginActivity", "Nombres: " + user.getNombres());
-                            Log.d("LoginActivity", "Rol: " + user.getRol());
-
-                            // Redirigir a MainActivity
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            intent.putExtra("userName", user.getNombres());
-                            intent.putExtra("userRole", user.getRol());
-                            Log.d("LoginActivity", "userName: " + user.getNombres());
-                            Log.d("LoginActivity", "userRole: " + user.getRol());
-
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Inicio de sesión fallido: Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Respuesta inesperada del servidor", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(LoginActivity.this, "Error de conexión: " + response.code(), Toast.LENGTH_SHORT).show();
+            public void onChanged(@Nullable LoginFormState loginFormState) {
+                if (loginFormState == null) {
+                    return;
+                }
+                loginButton.setEnabled(loginFormState.isDataValid());
+                if (loginFormState.getUsernameError() != null) {
+                    usernameEditText.setError(getString(loginFormState.getUsernameError()));
+                }
+                if (loginFormState.getPasswordError() != null) {
+                    passwordEditText.setError(getString(loginFormState.getPasswordError()));
                 }
             }
+        });
 
+        loginViewModel.getLoginResult().observe(this, new Observer<LoginResult>() {
             @Override
-            public void onFailure(Call<ResponseMessage<usuario>> call, Throwable t) {
+            public void onChanged(@Nullable LoginResult loginResult) {
+                if (loginResult == null) {
+                    return;
+                }
                 loadingProgressBar.setVisibility(View.GONE);
-                Log.e("Login", "Error en la conexión: " + t.getMessage());
-                Toast.makeText(LoginActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (loginResult.getError() != null) {
+                    showLoginFailed(loginResult.getError());
+                }
+                if (loginResult.getSuccess() != null) {
+                    updateUiWithUser(loginResult.getSuccess());
+                    // Guarda el estado de inicio de sesión en SharedPreferences
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("isLoggedIn", true);
+                    editor.apply();
+
+                    // Iniciar MainActivity después de un inicio de sesión exitoso
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish(); // Finalizar LoginActivity para evitar volver a ella
+                }
+                setResult(Activity.RESULT_OK);
+
+                //Complete and destroy login activity once successful
+                finish();
             }
         });
+
+        TextWatcher afterTextChangedListener = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // ignore
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // ignore
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString());
+            }
+        };
+        usernameEditText.addTextChangedListener(afterTextChangedListener);
+        passwordEditText.addTextChangedListener(afterTextChangedListener);
+        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    loginViewModel.login(usernameEditText.getText().toString(),
+                            passwordEditText.getText().toString());
+                }
+                return false;
+            }
+        });
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadingProgressBar.setVisibility(View.VISIBLE);
+                loginViewModel.login(usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString());
+            }
+        });
+    }
+
+    private void updateUiWithUser(LoggedInUserView model) {
+        String welcome = getString(R.string.welcome) + model.getDisplayName();
+        // TODO : initiate successful logged in experience
+        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+    }
+
+    private void showLoginFailed(@StringRes Integer errorString) {
+        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 }
