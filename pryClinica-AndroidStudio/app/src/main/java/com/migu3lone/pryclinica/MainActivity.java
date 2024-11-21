@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         String userName = intent.getStringExtra("userName");
         String userRole = intent.getStringExtra("userRole");
 
-
         NavigationView naviView = findViewById(R.id.nav_view);
         View headerView = naviView.getHeaderView(0);
 
@@ -57,8 +56,38 @@ public class MainActivity extends AppCompatActivity {
         Log.d("NavHeader", "NameTextView: " + nameTextView);
         Log.d("NavHeader", "RoleTextView: " + roleTextView);
 
+        // Filtrar las opciones del menú según el rol
+        Menu menu = naviView.getMenu();
 
+        // Ocultar todas las opciones inicialmente
+        menu.findItem(R.id.nav_home).setVisible(true);
+        menu.findItem(R.id.nav_especialidad).setVisible(false);
+        menu.findItem(R.id.nav_medico).setVisible(false);
+        menu.findItem(R.id.nav_cita).setVisible(false);
+        menu.findItem(R.id.nav_paciente).setVisible(false);
 
+        // Mostrar solo las opciones permitidas para el rol "General"
+        if ("General".equalsIgnoreCase(userRole)) {
+            menu.findItem(R.id.nav_especialidad).setVisible(true);
+            menu.findItem(R.id.nav_medico).setVisible(true);
+            menu.findItem(R.id.nav_cita).setVisible(true);
+            menu.findItem(R.id.nav_paciente).setVisible(true);
+        }
+
+        // Mostrar solo las opciones permitidas para el rol "Administrativo"
+        if ("Administrativo".equalsIgnoreCase(userRole)) {
+            menu.findItem(R.id.nav_cita).setVisible(true);
+            menu.findItem(R.id.nav_paciente).setVisible(true);
+        }
+        // Mostrar solo las opciones permitidas para el rol "Medico"
+        if ("Medico".equalsIgnoreCase(userRole)) {
+            menu.findItem(R.id.nav_medico).setVisible(false);
+            menu.findItem(R.id.nav_cita).setVisible(false);
+        }
+        // Mostrar solo las opciones permitidas para el rol "Paciente"
+        if ("Paciente".equalsIgnoreCase(userRole)) {
+            menu.findItem(R.id.nav_cita).setVisible(false);
+        }
 
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {

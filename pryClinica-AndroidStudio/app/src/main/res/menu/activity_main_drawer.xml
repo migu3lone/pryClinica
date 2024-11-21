@@ -26,4 +26,5 @@
             android:icon="@drawable/ic_paciente"
             android:title="@string/menu_paciente" />
     </group>
+
 </menu>
