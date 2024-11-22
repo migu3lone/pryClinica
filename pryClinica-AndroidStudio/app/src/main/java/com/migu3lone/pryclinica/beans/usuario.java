@@ -4,17 +4,15 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class usuario implements Serializable {
-    private String IdUsuario;
+    private String idUsuario;
     private String Password;
-    @SerializedName("rol")
     private String Rol;
     private String Apellidos;
-    @SerializedName("nombres")
     private String Nombres;
     private String Correo;
 
-    public usuario(String idUsuario, String password, String rol, String apellidos, String nombres, String correo) {
-        IdUsuario = idUsuario;
+    public usuario(String idUsuario, String password, String rol, String apellidos, String nombres, String correo, String username) {
+        this.idUsuario = idUsuario;
         Password = password;
         Rol = rol;
         Apellidos = apellidos;
@@ -23,11 +21,11 @@ public class usuario implements Serializable {
     }
 
     public String getIdUsuario() {
-        return IdUsuario;
+        return idUsuario;
     }
 
     public void setIdUsuario(String idUsuario) {
-        IdUsuario = idUsuario;
+        this.idUsuario = idUsuario;
     }
 
     public String getPassword() {
@@ -69,4 +67,6 @@ public class usuario implements Serializable {
     public void setCorreo(String correo) {
         Correo = correo;
     }
+
+
 }

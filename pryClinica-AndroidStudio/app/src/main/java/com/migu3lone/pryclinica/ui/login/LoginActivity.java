@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 import android.view.KeyEvent;
 import android.view.View;
@@ -23,6 +24,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.migu3lone.pryclinica.databinding.ActivityLoginBinding;
 import com.migu3lone.pryclinica.MainActivity;
 import com.migu3lone.pryclinica.R;
+import com.migu3lone.pryclinica.beans.usuario;
 import com.migu3lone.pryclinica.ui.login.LoginViewModel;
 import com.migu3lone.pryclinica.ui.login.LoginViewModelFactory;
 
@@ -32,12 +34,22 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private SharedPreferences sharedPreferences;
 
+    // Inicializa SharedPreferences
+    //SharedPreferences sharedPreferences = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE);
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Inicializa SharedPreferences
+        //SharedPreferences sharedPreferences = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE);
         sharedPreferences = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE);
+
+        // Usar sharedPreferences para guardar y obtener valores
+        /*SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isLoggedIn", true);
+        editor.apply();*/
 
         // Verifica si el usuario ya está autenticado
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
@@ -88,13 +100,26 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
+
+                    // Obtener información del usuario exitoso
+                    LoggedInUserView user = loginResult.getSuccess();
+                    String userName = user.getDisplayName(); // Asegúrate de que sea correcto
+                    String userRole = user.getDisplayRol(); // Si tienes un método para el rol
                     // Guarda el estado de inicio de sesión en SharedPreferences
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isLoggedIn", true);
+                    editor.putString("userName", userName); // Nombre del usuario
+                    editor.putString("userRole", userRole); // Rol del usuario
                     editor.apply();
+                    Log.d("AQUII2", userName);
+                    Log.d("AQUII3", "Guardado en SharedPreferences: isLoggedIn=" + true + ", userName=" + userName);
 
                     // Iniciar MainActivity después de un inicio de sesión exitoso
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("userName", userName); // Nombre del usuario
+                    intent.putExtra("userRole", userRole); // Rol del usuario
+
+                    //*intent.putExtra("userRole", userRole); // Rol del usuario
                     startActivity(intent);
                     finish(); // Finalizar LoginActivity para evitar volver a ella
                 }

@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toolbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -36,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        /*if (getCallingActivity() != null) {
+            Log.d("AQUIIIIII", "Llamado por: " + getCallingActivity().getClassName());
+        } else {
+            Log.d("AQUIIIIII", "No hay actividad que llamó a MainActivity.");
+        }*/
+
  // 0 es el índice del primer header
 
         Intent intent = getIntent();
@@ -81,12 +87,12 @@ public class MainActivity extends AppCompatActivity {
         }
         // Mostrar solo las opciones permitidas para el rol "Medico"
         if ("Medico".equalsIgnoreCase(userRole)) {
-            menu.findItem(R.id.nav_medico).setVisible(false);
-            menu.findItem(R.id.nav_cita).setVisible(false);
+            menu.findItem(R.id.nav_medico).setVisible(true);
+            menu.findItem(R.id.nav_cita).setVisible(true);
         }
         // Mostrar solo las opciones permitidas para el rol "Paciente"
         if ("Paciente".equalsIgnoreCase(userRole)) {
-            menu.findItem(R.id.nav_cita).setVisible(false);
+            menu.findItem(R.id.nav_cita).setVisible(true);
         }
 
         setSupportActionBar(binding.appBarMain.toolbar);

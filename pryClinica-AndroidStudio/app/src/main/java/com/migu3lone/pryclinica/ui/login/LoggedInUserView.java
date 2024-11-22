@@ -5,13 +5,20 @@ package com.migu3lone.pryclinica.ui.login;
  */
 class LoggedInUserView {
     private String displayName;
+    private String displayRol;
+
     //... other data fields that may be accessible to the UI
 
-    LoggedInUserView(String displayName) {
+    LoggedInUserView(String displayName, String displayRol) {
         this.displayName = displayName;
+        this.displayRol = displayRol;
     }
 
     String getDisplayName() {
         return displayName;
+    }
+
+    String getDisplayRol() {
+        return displayRol;
     }
 }

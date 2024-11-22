@@ -40,7 +40,7 @@ public class LoginViewModel extends ViewModel {
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
         JsonObject loginData = new JsonObject();
-        loginData.addProperty("id", username); // ID del usuario (medico, paciente, usuario)
+        loginData.addProperty("username", username); // id del usuario (IdMedico, IdPaciente, IdUsuario)
         loginData.addProperty("password", password); // Contraseña
 
         // Obtener cliente de Retrofit y el servicio de la API
@@ -63,7 +63,9 @@ public class LoginViewModel extends ViewModel {
                         usuario user = beans.getData()[0];
                         //usuario[] user = beans.getData();
                         if (user != null) {
-                            loginResult.setValue(new LoginResult(new LoggedInUserView(user.getApellidos())));
+                            //loginResult.setValue(new LoginResult(new LoggedInUserView(user.getApellidos(), "paciente")));
+                            //loginResult.setValue(new LoginResult(new LoggedInUserView(user.getIdUsuario())));
+                            loginResult.setValue(new LoginResult(new LoggedInUserView(user.getApellidos(), user.getRol())));
                             //loginResult.setValue(new LoginResult(new LoggedInUserView(responseMessage.getData().getApellidos())));
                             //loginResult.setValue(new LoginResult(new LoggedInUserView(user.getApellidos())));
                         } else {
@@ -119,5 +121,4 @@ public class LoginViewModel extends ViewModel {
     private boolean isPasswordValid(String password) {
         return password != null && password.trim().length() > 5;
     }
-
 }
