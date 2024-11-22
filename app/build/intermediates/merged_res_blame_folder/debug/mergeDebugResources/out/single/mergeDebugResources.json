@@ -1,0 +1,298 @@
+[
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/navigation_mobile_navigation.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/navigation/mobile_navigation.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_activity_main.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/color_item_icon_color.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/color/item_icon_color.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_app_bar_main.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/app_bar_main.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_ic_medico.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/ic_medico.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/xml_network_security_config.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/xml/network_security_config.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_item_especialidad.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/item_especialidad.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_ic_paciente.png.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/ic_paciente.png"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_slideshow.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_slideshow.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_side_nav_bar.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/side_nav_bar.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout-w936dp_activity_login.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout-w936dp/activity_login.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_ic_auxilios.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/ic_auxilios.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_menumedico.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_menumedico.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/mipmap-anydpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_editar.png.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/editar.png"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_menuespecialidad.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_menuespecialidad.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/xml_root_preferences.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/xml/root_preferences.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_ic_menu_gallery.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/ic_menu_gallery.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_home.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_viewespecialidad.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_viewespecialidad.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/font_tittle_font.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/font/tittle_font.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout-w1240dp_activity_login.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout-w1240dp/activity_login.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_addcita.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_addcita.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/xml_data_extraction_rules.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/font_serif_tittle.ttf.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/font/serif_tittle.ttf"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_ic_menu_camera.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/ic_menu_camera.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_rect_biselado.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/rect_biselado.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/menu_main.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/menu/main.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/font_oswald_text.ttf.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/font/oswald_text.ttf"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_modal_addespecialidad.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/modal_addespecialidad.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_bg_login.jpg.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/bg_login.jpg"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_bg_menuser.png.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/bg_menuser.png"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/xml_backup_rules.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/font_text_font.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/font/text_font.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_ic_citapaciente.png.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/ic_citapaciente.png"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_item_paciente.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/item_paciente.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_viewcita.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_viewcita.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_settings.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_settings.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_viewpaciente.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_viewpaciente.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_bg_navmenu.png.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/bg_navmenu.png"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_addpaciente.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_addpaciente.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_menucita.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_menucita.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_viewmedico.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_viewmedico.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_about.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_about.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_addmedico.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_addmedico.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_ic_menu_slideshow.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/ic_menu_slideshow.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_activity_login.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/color_item_text_color.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/color/item_text_color.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_item_medico.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/item_medico.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_eliminar.png.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/eliminar.png"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_nav_header_main.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/nav_header_main.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_gallery.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_gallery.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_item_cita.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/item_cita.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_bg_menup.jpg.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/bg_menup.jpg"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_content_main.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/content_main.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_menupaciente.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_menupaciente.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/menu_activity_main_drawer.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/menu/activity_main_drawer.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_ic_especial.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/ic_especial.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_item_espmed.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/item_espmed.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_logo_usuario.png.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/logo_usuario.png"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/layout_fragment_addespecialidad.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/layout/fragment_addespecialidad.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.migu3lone.pryclinica.app-debug-45:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.migu3lone.pryclinica.app-main-47:/mipmap-xhdpi/ic_launcher_round.webp"
+    }
+]
