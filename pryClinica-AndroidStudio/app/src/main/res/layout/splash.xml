@@ -27,7 +27,7 @@
         android:layout_height="39dp"
         android:layout_marginTop="195dp"
         android:layout_marginBottom="27dp"
-        android:text="@string/cl_nica_santa_luc_a_app"
+        android:text="Clínica Santa Lucía App"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
