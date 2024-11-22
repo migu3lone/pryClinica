@@ -1,7 +1,7 @@
 <?php
 
 $dao = 'daoLogin'; // Nombre del DAO que gestionará las operaciones
-$var1 = 'id'; // ID del usuario (idMedico, idPaciente, idUsuario)
+$var1 = 'username'; // ID del usuario (idMedico, idPaciente, idUsuario)
 $var2 = 'password'; // Contraseña del usuario
 
 header('Content-Type: application/json');
@@ -25,29 +25,29 @@ function handlePostRequest() {
     $input = json_decode(file_get_contents('php://input'), true);
 
     if (isset($input[$var1]) && isset($input[$var2])) {
-        $id = $input[$var1];
+        $username = $input[$var1];
         $password = $input[$var2];
 
-        // Determinar el prefijo del ID
-        $prefix = strtoupper(substr($id, 0, 1));
+        // Determinar el prefijo del username
+        $prefix = strtoupper(substr($username, 0, 1));
 
         // Lógica según el prefijo
         $data = null;
         switch ($prefix) {
             case 'M': // Médico
-                $data = $dao::getMedicoByIdAndPassword($id, $password);
+                $data = $dao::getMedico($username, $password);
                 break;
             case 'P': // Paciente
-                $data = $dao::getPacienteByIdAndPassword($id, $password);
+                $data = $dao::getPaciente($username, $password);
                 break;
-            case 'U': // Usuario general o administrativo
-                $data = $dao::getUsuarioByIdAndPassword($id, $password);
+			case 'U': // Usuario general o administrativo
+                $data = $dao::getUsuario($username, $password);
                 break;
             default:
                 http_response_code(400);
                 echo json_encode([
                     "status" => 400,
-                    "message" => "Prefijo de ID no válido"
+                    "message" => "Prefijo del username no válido"
                 ]);
                 return;
         }
